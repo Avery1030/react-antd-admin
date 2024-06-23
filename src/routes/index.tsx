@@ -8,6 +8,7 @@ import { useRoutes } from 'react-router-dom';
 import Dashboard from '@/pages/dashboard';
 import LayoutPage from '@/pages/layout';
 import LoginPage from '@/pages/login';
+import WithdrawApplyList from '@/pages/withdrawApplyList';
 
 import WrapperRouteComponent from './config';
 
@@ -29,6 +30,10 @@ const routeList: RouteObject[] = [
       {
         path: 'dashboard',
         element: <WrapperRouteComponent element={<Dashboard />} titleId="title.dashboard" />,
+      },
+      {
+        path: 'withdraw-apply-list',
+        element: <WrapperRouteComponent element={<WithdrawApplyList />} titleId="title.withdrawApplyList" />,
       },
       {
         path: '*',
