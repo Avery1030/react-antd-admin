@@ -2,7 +2,6 @@ interface MenuItem {
   code: string;
   label: {
     zh_CN: string;
-    en_US: string;
   };
   icon?: string;
   path: string;

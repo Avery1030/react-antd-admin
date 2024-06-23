@@ -1,9 +1,7 @@
 export type TagItem = {
   code: string;
-
   label: {
     zh_CN: string;
-    en_US: string;
   };
 
   /** tag's route path */

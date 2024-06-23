@@ -7,7 +7,6 @@ const mockMenuList: MenuList = [
     code: 'dashboard',
     label: {
       zh_CN: '首页',
-      en_US: 'Dashboard',
     },
     icon: 'dashboard',
     path: '/dashboard',
@@ -16,9 +15,7 @@ const mockMenuList: MenuList = [
     code: 'withdraw-apply-list',
     label: {
       zh_CN: '提现申请列表',
-      en_US: 'Withdraw Apply List',
     },
-    // icon: 'profile',
     path: '/withdraw-apply-list',
   },
 ];
