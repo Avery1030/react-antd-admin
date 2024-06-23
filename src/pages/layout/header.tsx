@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { LogoutOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { LogoutOutlined } from '@ant-design/icons';
 import { Dropdown, Layout, theme as antTheme, Tooltip } from 'antd';
 import { createElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import Avator from '@/assets/header/avator.jpeg';
 import { ReactComponent as MoonSvg } from '@/assets/header/moon.svg';
 import { ReactComponent as SunSvg } from '@/assets/header/sun.svg';
-import AntdSvg from '@/assets/logo/antd.svg';
 import ReactSvg from '@/assets/logo/react.svg';
 import { LocaleFormatter, useLocale } from '@/locales';
 import { setGlobalState } from '@/stores/global.store';
@@ -17,14 +16,9 @@ import { logoutAsync } from '@/stores/user.action';
 
 const { Header } = Layout;
 
-interface HeaderProps {
-  collapsed: boolean;
-  toggle: () => void;
-}
-
 type Action = 'userInfo' | 'userSetting' | 'logout';
 
-const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
+const HeaderComponent: FC = () => {
   const { logged, device } = useSelector(state => state.user);
   const { theme } = useSelector(state => state.global);
   const navigate = useNavigate();
@@ -65,15 +59,12 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
   return (
     <Header className="layout-page-header bg-2" style={{ backgroundColor: token.token.colorBgContainer }}>
       {device !== 'MOBILE' && (
-        <div className="logo" style={{ width: collapsed ? 80 : 200 }}>
-          <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
-          <img src={AntdSvg} alt="" />
+        <div className="logo" style={{ width: 200 }}>
+          <img src={ReactSvg} alt="" style={{ marginRight: '20px' }} />
         </div>
       )}
       <div className="layout-page-header-main">
-        <div onClick={toggle}>
-          <span id="sidebar-trigger">{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
-        </div>
+        <div></div>
         <div className="actions">
           <Tooltip
             title={formatMessage({

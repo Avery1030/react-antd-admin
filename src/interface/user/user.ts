@@ -14,12 +14,7 @@ export interface UserState {
   logged: boolean;
 
   role: Role;
-
-  /** user's device */
   device: Device;
-
-  /** menu collapsed status */
-  collapsed: boolean;
 
   /** notification count */
   noticeCount: number;

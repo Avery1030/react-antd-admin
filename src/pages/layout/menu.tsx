@@ -2,10 +2,8 @@ import type { MenuList } from '../../interface/layout/menu.interface';
 import type { FC } from 'react';
 
 import { Menu } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-import { setUserItem } from '@/stores/user.store';
 
 interface MenuProps {
   menuList: MenuList;
@@ -17,9 +15,8 @@ interface MenuProps {
 
 const MenuComponent: FC<MenuProps> = props => {
   const { menuList, openKey, onChangeOpenKey, selectedKey, onChangeSelectedKey } = props;
-  const { device, locale } = useSelector(state => state.user);
+  const { locale } = useSelector(state => state.user);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const getTitle = (menu: MenuList[0]) => {
     return (
@@ -33,10 +30,6 @@ const MenuComponent: FC<MenuProps> = props => {
   const onMenuClick = (path: string) => {
     onChangeSelectedKey(path);
     navigate(path);
-
-    if (device !== 'DESKTOP') {
-      dispatch(setUserItem({ collapsed: true }));
-    }
   };
 
   const onOpenChange = (keys: string[]) => {

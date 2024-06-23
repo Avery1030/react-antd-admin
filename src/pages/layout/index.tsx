@@ -18,14 +18,13 @@ import MenuComponent from './menu';
 import TagsView from './tagView';
 
 const { Sider, Content } = Layout;
-const WIDTH = 992;
 
 const LayoutPage: FC = () => {
   const location = useLocation();
   const [openKey, setOpenkey] = useState<string>();
   const [selectedKey, setSelectedKey] = useState<string>(location.pathname);
   const [menuList, setMenuList] = useState<MenuList>([]);
-  const { device, collapsed } = useSelector(state => state.user);
+  const { device } = useSelector(state => state.user);
   const token = antTheme.useToken();
 
   const isMobile = device === 'MOBILE';
@@ -37,14 +36,6 @@ const LayoutPage: FC = () => {
     setOpenkey(code);
     setSelectedKey(location.pathname);
   }, [location.pathname]);
-
-  const toggle = () => {
-    dispatch(
-      setUserItem({
-        collapsed: !collapsed,
-      }),
-    );
-  };
 
   const initMenuListAll = (menu: MenuList) => {
     const MenuListAll: MenuChild[] = [];
@@ -82,13 +73,10 @@ const LayoutPage: FC = () => {
   useEffect(() => {
     window.onresize = () => {
       const { device } = getGlobalState();
-      const rect = document.body.getBoundingClientRect();
-      const needCollapse = rect.width < WIDTH;
 
       dispatch(
         setUserItem({
           device,
-          collapsed: needCollapse,
         }),
       );
     };
@@ -96,7 +84,7 @@ const LayoutPage: FC = () => {
 
   return (
     <Layout className="layout-page">
-      <HeaderComponent collapsed={collapsed} toggle={toggle} />
+      <HeaderComponent />
       <Layout>
         {!isMobile ? (
           <Sider
@@ -105,7 +93,6 @@ const LayoutPage: FC = () => {
             collapsible
             style={{ backgroundColor: token.token.colorBgContainer }}
             collapsedWidth={isMobile ? 0 : 80}
-            collapsed={collapsed}
             breakpoint="md"
           >
             <MenuComponent
@@ -117,14 +104,7 @@ const LayoutPage: FC = () => {
             />
           </Sider>
         ) : (
-          <Drawer
-            width="200"
-            placement="left"
-            bodyStyle={{ padding: 0, height: '100%' }}
-            closable={false}
-            onClose={toggle}
-            open={!collapsed}
-          >
+          <Drawer width="200" placement="left" bodyStyle={{ padding: 0, height: '100%' }} closable={false}>
             <MenuComponent
               menuList={menuList}
               openKey={openKey}
