@@ -53,7 +53,7 @@ const MenuComponent: FC<MenuProps> = props => {
               label: getTitle(menu),
               children: menu.children.map(child => ({
                 key: child.path,
-                label: child.label[locale],
+                label: child.label,
               })),
             }
           : {

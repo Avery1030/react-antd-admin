@@ -44,13 +44,9 @@ const App: React.FC = () => {
     dayjs.locale('zh-cn');
   }, [locale]);
 
-  const getAntdLocale = () => {
-    return zhCN;
-  };
-
   return (
     <ConfigProvider
-      locale={getAntdLocale()}
+      locale={zhCN}
       componentSize="middle"
       theme={{
         token: { colorPrimary: '#13c2c2' },
